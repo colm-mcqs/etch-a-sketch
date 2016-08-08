@@ -5,6 +5,13 @@ html, body {
     margin: 0;
     font-family: 'Open sans', sans-serif;
     background-color: lightslategray;
+    overflow: hidden;
+}
+
+#title{
+    margin: 2% auto 2% auto;
+    text-align: center;
+    font-family: Gill Sans MT, sans-serif;
 }
 #nav {
     margin: 0 2% 2% 0;
