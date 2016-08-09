@@ -5,9 +5,10 @@ function clearGrid(){
 }
 
 const $box = $('<div class="box"></div>');
-$(document).ready(function(){
-    $("head").append("<link>");
-    var css = $("head").children(":last");
+$(document).ready(()=>{
+    let $head = $("head");
+    $head.append("<link>");
+    let css = $head.children(":last");
     css.attr({
         rel:  "stylesheet",
         type: "text/css",
@@ -15,17 +16,18 @@ $(document).ready(function(){
     });
 
     let $size = null;
-    function buildGrid($size) {
-        $('#grid').empty();
-        for (var i = 0; i < $size ; i++) {
+    let buildGrid=($size)=> {
+        let $grid = $('#grid');
+        $grid.empty();
+        for (let i = 0; i < $size ; i++) {
             let $row = $('<div class="row"></div>');
-            $('#grid').append($row.eq(0).clone());
+            $grid.append($row.eq(0).clone());
         }
-        for (var j = 0; j < $size; j++) {
+        for (let j = 0; j < $size; j++) {
             $('.row').append($box.eq(0).clone());
         }
-        var windowW = window.innerWidth, windowH = window.innerHeight;
-        var gridLen = windowW < windowH ? windowW : windowH;
+        let windowW = window.innerWidth, windowH = window.innerHeight;
+        let gridLen = windowW < windowH ? windowW : windowH;
         gridLen = gridLen - 200;
 
         $('#grid-wrapper').css({
@@ -39,12 +41,12 @@ $(document).ready(function(){
             .hover(function(){
                 $(this).addClass('lit');
             }, function(){});
-    }
+    };
 
     buildGrid(xSize);
 
     const $input = $('input');
-    $input.on('keydown', function(key){
+    $input.on('keydown', (key)=>{
         if(key.keyCode == 13){
             $size = $input.val();
             buildGrid($size);
