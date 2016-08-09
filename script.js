@@ -4,6 +4,7 @@ function clearGrid(){
     $('.box').removeClass('lit');
 }
 
+const $box = $('<div class="box"></div>');
 $(document).ready(function(){
     $("head").append("<link>");
     var css = $("head").children(":last");
@@ -13,9 +14,9 @@ $(document).ready(function(){
         href: "style.css"
     });
 
-    const $box = $('<div class="box"></div>');
     let $size = null;
     function buildGrid($size) {
+        $('#grid').empty();
         for (var i = 0; i < $size ; i++) {
             let $row = $('<div class="row"></div>');
             $('#grid').append($row.eq(0).clone());
@@ -23,11 +24,6 @@ $(document).ready(function(){
         for (var j = 0; j < $size; j++) {
             $('.row').append($box.eq(0).clone());
         }
-    }
-
-    buildGrid(xSize);
-
-    $(window).on('resize', function() {
         var windowW = window.innerWidth, windowH = window.innerHeight;
         var gridLen = windowW < windowH ? windowW : windowH;
         gridLen = gridLen - 200;
@@ -38,20 +34,22 @@ $(document).ready(function(){
             'margin': 'auto'
         });
 
-        $('.box').width((gridLen/xSize-2)+ 'px')
-                 .height((gridLen/xSize-2)+ 'px')
-                 .hover(function(){
-                     $(this).addClass('lit');
-                 }, function(){});
-    });
+        $('.box').width((gridLen/$size-2)+ 'px')
+            .height((gridLen/$size-2)+ 'px')
+            .hover(function(){
+                $(this).addClass('lit');
+            }, function(){});
+    }
 
-    $('input').on('keydown', function(key){
+    buildGrid(xSize);
+
+    const $input = $('input');
+    $input.on('keydown', function(key){
         if(key.keyCode == 13){
-            $size = $('input').val();
-            $('grid').remove();
+            $size = $input.val();
             buildGrid($size);
+            $input.val('');
             $(window).trigger('resize');
         }
     });
-    $(window).trigger('resize');
 });

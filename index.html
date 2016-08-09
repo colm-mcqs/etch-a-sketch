@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>EtchySketch</title>
+    <script src="https://use.fontawesome.com/f632d04251.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="script.js"></script>
 </head>
@@ -10,8 +11,9 @@
     <div id="title"><h1>Etchy Sketch</h1></div>
     <div id="grid-wrapper">
         <div id="nav">
-            <button id="cleargrid" onclick="clearGrid();">Clear Grid</button>
-            <input id="gridsize" name="gridsize" placeholder="Enter Required Grid Size"/>
+            <button id="cleargrid" onclick="clearGrid();"><i class="fa fa-undo"></i> Clear Grid</button>
+            <span>Enter New Grid Size: </span>
+            <input id="gridsize" name="gridsize" placeholder="Size?"/>
         </div>
         <div id="grid"></div>
     </div>
